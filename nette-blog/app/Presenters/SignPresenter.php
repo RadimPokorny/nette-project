@@ -26,7 +26,7 @@ final class SignPresenter extends Nette\Application\UI\Presenter
         try {
             $this->getUser()->login($data->username, $data->password);
             $this->redirect('Home:');
-
+    
         } catch (Nette\Security\AuthenticationException $e) {
             $form->addError('Nesprávné přihlašovací jméno nebo heslo.');
         }

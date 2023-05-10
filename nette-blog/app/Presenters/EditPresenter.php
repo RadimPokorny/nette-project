@@ -24,43 +24,43 @@ final class EditPresenter extends Nette\Application\UI\Presenter
         return $form;
     }
     public function postFormSucceeded(array $data): void
-    {
-        $postId = $this->getParameter('postId');
+{
+	$postId = $this->getParameter('postId');
 
-        if ($postId) {
-            $post = $this->database
-                ->table('posts')
-                ->get($postId);
-            $post->update($data);
+	if ($postId) {
+		$post = $this->database
+			->table('posts')
+			->get($postId);
+		$post->update($data);
 
-        } else {
-            $post = $this->database
-                ->table('posts')
-                ->insert($data);
-        }
+	} else {
+		$post = $this->database
+			->table('posts')
+			->insert($data);
+	}
 
-        $this->flashMessage('Příspěvek byl úspěšně publikován.', 'success');
-        $this->redirect('Post:show', $post->id);
-    }
+	$this->flashMessage('Příspěvek byl úspěšně publikován.', 'success');
+	$this->redirect('Post:show', $post->id);
+}
     public function renderEdit(int $postId): void
-    {
-        $post = $this->database
-            ->table('posts')
-            ->get($postId);
+{
+	$post = $this->database
+		->table('posts')
+		->get($postId);
 
-        if (!$post) {
-            $this->error('Post not found');
-        }
+	if (!$post) {
+		$this->error('Post not found');
+	}
 
-        $this->getComponent('postForm')
-            ->setDefaults($post->toArray());
-    }
-    public function startup(): void
-    {
-        parent::startup();
+	$this->getComponent('postForm')
+		->setDefaults($post->toArray());
+}
+public function startup(): void
+{
+	parent::startup();
 
-        if (!$this->getUser()->isLoggedIn()) {
-            $this->redirect('Sign:in');
-        }
-    }
+	if (!$this->getUser()->isLoggedIn()) {
+		$this->redirect('Sign:in');
+	}
+}
 }

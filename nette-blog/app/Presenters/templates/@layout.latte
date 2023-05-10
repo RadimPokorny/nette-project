@@ -8,7 +8,9 @@
 </head>
 
 <body>
-	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+	<div n:foreach="$flashes as $flash" n:class="flash, $flash->type">
+	{$flash->message}
+	</div>
 
 	{include content}
 
@@ -17,13 +19,13 @@
 	{/block}
 
 	<ul class="navig">
-	<li><a n:href="Home:">Články</a></li>
-	{if $user->isLoggedIn()}
-		<li><a n:href="Sign:out">Odhlásit</a></li>
-	{else}
-		<li><a n:href="Sign:in">Přihlásit</a></li>
-	{/if}
-</ul>
+		<li><a n:href="Home:">Články</a></li>
+		{if $user->isLoggedIn()}
+			<li><a n:href="Sign:out">Odhlásit</a></li>
+		{else}
+			<li><a n:href="Sign:in">Přihlásit</a></li>
+		{/if}
+	</ul>
 
 	
 </body>
