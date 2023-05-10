@@ -8,4 +8,3 @@ $configurator = App\Bootstrap::boot();
 $container = $configurator->createContainer();
 $application = $container->getByType(Nette\Application\Application::class);
 $application->run();
-?>
